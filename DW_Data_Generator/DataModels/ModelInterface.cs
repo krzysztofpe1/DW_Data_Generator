@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace DW_Data_Generator.CarRepairMasterModels
 {
-    public class Mechanic
+    public interface ModelInterface
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
+        public string GenerateCsvHeader();
+        public string ToCsv();
     }
 }
