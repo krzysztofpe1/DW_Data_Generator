@@ -5,8 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DW_Data_Generator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Data Generator" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="136*"/>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="136*"/>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="238*"/>
+        </Grid.ColumnDefinitions>
+        <!--Labels on first Column-->
+        <TextBlock HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="96" TextAlignment="Right"><Run Language="pl-pl" Text="Start Date:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="96" TextAlignment="Right" Grid.Row="1"><Run Language="pl-pl" Text="Repairs per day:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="0,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" TextAlignment="Right" Grid.Row="2"><Run Language="pl-pl" Text="T1:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="96" TextAlignment="Right" Grid.Row="3"><Run Language="pl-pl" Text="T2:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="96" TextAlignment="Right" Grid.Row="4"><Run Language="pl-pl" Text="Limit records to:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="116" TextAlignment="Right" Grid.Row="5"><Run Language="pl-pl" Text="Mechanics count:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="116" TextAlignment="Right" Grid.Row="6"><Run Language="pl-pl" Text="Regular clients:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="116" TextAlignment="Right" Grid.Row="8"><Run Language="pl-pl" Text="Estimated records:"/></TextBlock>
+
+        <!--Fields on second Column-->
+        <DatePicker x:Name="start_date" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126" Height="24"/>
+        <TextBox x:Name="repairs_per_day" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="5" VerticalAlignment="Center" Width="126" Grid.Column="1" Grid.Row="1" PreviewTextInput="NumericTextBoxControl" PreviewKeyDown="UpdateEstimatedCounts"/>
+        <DatePicker Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126" Height="24" Grid.Row="2"/>
+        <DatePicker Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126" Height="24" Grid.Row="3"/>
+        <TextBox x:Name="limit_records" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="126" Grid.Column="1" Grid.Row="4" PreviewTextInput="NumericTextBoxControl"/>
+        <TextBox x:Name="mechanics_count" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="8" VerticalAlignment="Center" Width="126" Grid.Column="1" Grid.Row="5" PreviewTextInput="NumericTextBoxControl"/>
+        <TextBox x:Name="regular_clients" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="100" VerticalAlignment="Center" Width="126" Grid.Column="1" Grid.Row="6" PreviewTextInput="NumericTextBoxControl"/>
+        <TextBox x:Name="estimated_records" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="126" Grid.Column="1" Grid.Row="8" IsReadOnly="True" IsEnabled="False"/>
+
+        <!--Labels on third Column-->
+        <TextBlock HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="116" TextAlignment="Right" Grid.Row="1" Grid.Column="2" Margin="15,0,0,0"><Run Language="pl-pl" Text="Repairs per day +/-:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" TextAlignment="Right" Grid.Row="4" Grid.Column="2" Margin="10,10,0,0"><Run Language="pl-pl" Text="0 - unlimited:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="136" TextAlignment="Right" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="140,0,0,0"><Run Language="pl-pl" Text="Chance for new client:"/></TextBlock>
+
+        <!--Fields on fourth Column-->
+        <TextBox x:Name="repairs_per_day_oscilation" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="1" VerticalAlignment="Center" Width="126" Grid.Column="3" Grid.Row="1" PreviewTextInput="NumericTextBoxControl"/>
+        <TextBox x:Name="chance_for_new_client" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="20" VerticalAlignment="Center" Width="126" Grid.Column="3" Grid.Row="6" PreviewTextInput="PercentageTextBoxControl"/>
+
+        <!--Generate button-->
+        <Button x:Name="generate_data_button" Grid.Column="4" Content="Generate Data" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="9" VerticalAlignment="Bottom" Height="20" Width="80" Click="Button_Click"/>
 
     </Grid>
 </Window>
