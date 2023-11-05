@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using DW_Data_Generator.DataGenerators;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DW_Data_Generator
 {
@@ -21,6 +12,9 @@ namespace DW_Data_Generator
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Private vars
+        private DataGenerator _dataGenerator;
+        #endregion
         #region Ctor
         public MainWindow()
         {
@@ -68,6 +62,19 @@ namespace DW_Data_Generator
         {
             generate_data_button.IsEnabled = false;
             await Task.Delay(1000);
+            _dataGenerator = new DataGenerator()
+            {
+                StartDate = DateTime.Parse(start_date.Text),
+                RepairsPerDay = int.Parse(repairs_per_day.Text),
+                RepairsPerDayOscilation = int.Parse(repairs_per_day_oscilation.Text),
+                T1 = DateTime.Parse(t1.Text),
+                T2 = DateTime.Parse(t2.Text),
+                LimitRecords = int.Parse(limit_records.Text),
+                MechanicCount = int.Parse(mechanics_count.Text),
+                RegularClients = int.Parse(regular_clients.Text),
+                ChanceForNewClient = double.Parse(chance_for_new_client.Text) / 100,
+            };
+            _dataGenerator.GenerateData();
             generate_data_button.IsEnabled = true;
         }
         private bool isNumeric(string text)

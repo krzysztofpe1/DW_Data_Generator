@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DW_Data_Generator.DataGenerator
+namespace DW_Data_Generator.DataGenerators
 {
     public static class MiscGenerators
     {
@@ -71,7 +71,7 @@ namespace DW_Data_Generator.DataGenerator
                 do
                 {
                     var index = _random.Next(count);
-                    car = midRes[index];
+                    car = _carInfos[index];
                 }while(midRes.Contains(car));
                 midRes.Add(car);
             }
@@ -147,6 +147,11 @@ namespace DW_Data_Generator.DataGenerator
         }
         public static Part GeneratePart()
         {
+            if(_parts.Count == 0)
+                PopulatePartsList();
+            if (_parts.Count == 0)
+                throw new DWException($"File: {_partsFilePath} doesn't exist. Can't generate names.");
+
             var  part = _parts[_random.Next(_parts.Count)];
             return new Part()
             {

@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DW_Data_Generator.DataGenerator
+namespace DW_Data_Generator.DataGenerators
 {
     public class DataGenerator
     {
@@ -36,14 +36,21 @@ namespace DW_Data_Generator.DataGenerator
         private List<Repair> _repairsList = new List<Repair>();
         #endregion
         #region Ctor
-        public DataGenerator() { }
+        public DataGenerator()
+        {
+            Mechanics = new();
+            Cars = new();
+            Parts = new();
+            Repairs = new();
+            MechanicTAs = new();
+        }
         #endregion
         #region Public Methods
         public void GenerateData()
         {
             GenerateMechanics();
             GenerateRegularClients();
-
+            GenerateRecords();
         }
         #endregion
         #region Private Methods
@@ -78,6 +85,10 @@ namespace DW_Data_Generator.DataGenerator
                     Surname = names[i].Item2,
                 });
             }
+        }
+        private void GenerateRecords()
+        {
+
         }
         #endregion
     }
