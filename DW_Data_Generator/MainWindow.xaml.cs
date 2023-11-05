@@ -75,6 +75,8 @@ namespace DW_Data_Generator
                 ChanceForNewClient = double.Parse(chance_for_new_client.Text) / 100,
             };
             _dataGenerator.GenerateData();
+            var csvGenerator = new CsvGenerator(_dataGenerator);
+            csvGenerator.ExportData();
             generate_data_button.IsEnabled = true;
         }
         private bool isNumeric(string text)
