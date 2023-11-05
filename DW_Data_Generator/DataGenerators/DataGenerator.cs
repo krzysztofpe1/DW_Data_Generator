@@ -34,6 +34,7 @@ namespace DW_Data_Generator.DataGenerators
         private List<Mechanic> _mechanicList = new List<Mechanic>();
         private List<Part> _partsList = new List<Part>();
         private List<Repair> _repairsList = new List<Repair>();
+        private Random _random = new Random();
         #endregion
         #region Ctor
         public DataGenerator()
@@ -88,7 +89,28 @@ namespace DW_Data_Generator.DataGenerators
         }
         private void GenerateRecords()
         {
+            var currentDay = StartDate;
+            //Individual Days inside
+            while (true)
+            {
+                var repairsNumber = RepairsPerDay - RepairsPerDayOscilation + _random.Next(RepairsPerDayOscilation * 2 + 1);
+                //Individual Repairs inside
+                for(int i =0;i< repairsNumber; i++)
+                {
 
+                }
+                if (currentDay == T1)
+                {
+
+                }
+                if (currentDay == T2 || Repairs.Count >= LimitRecords)
+                {
+                    //End of generating data
+
+                    break;
+                }
+                currentDay = currentDay.AddDays(1);
+            }
         }
         #endregion
     }

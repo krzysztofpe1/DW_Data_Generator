@@ -11,6 +11,7 @@ namespace DW_Data_Generator.DataGenerators
 {
     public static class MiscGenerators
     {
+        #region Private vars
         private static Random _random = new Random();
         private static List<string> _names = new List<string>();
         private static string _namesFilePath = "FullNames.txt";
@@ -18,6 +19,7 @@ namespace DW_Data_Generator.DataGenerators
         private static string _carInfosFilePath = "CarInfo.txt";
         private static List<Part> _parts = new List<Part>();
         private static string _partsFilePath = "Parts.txt";
+        #endregion
         #region License Plate
         public static List<string> GenerateLicensePlates(int amount)
         {
