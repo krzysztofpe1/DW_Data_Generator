@@ -52,6 +52,7 @@ namespace DW_Data_Generator.DataGenerators
             GenerateMechanics();
             GenerateRegularClients();
             GenerateRecords();
+            SortAndIndexData();
         }
         #endregion
         #region Private Methods
@@ -87,6 +88,47 @@ namespace DW_Data_Generator.DataGenerators
                 });
             }
         }
+        private Car GenerateSingleClient()
+        {
+            var name = MiscGenerators.GenerateFirstAndLastNames(1);
+            List<string> registration;
+            do
+            {
+                registration = MiscGenerators.GenerateLicensePlates(1);
+            } while (Cars.FirstOrDefault(car => car.Registration == registration[0]) != null);
+            var carInfo = MiscGenerators.GenerateCarInfos(1);
+            Car car = new Car()
+            {
+                Registration = registration[0],
+                Brand = carInfo[0].Item1,
+                Model = carInfo[0].Item2,
+                Name = name[0].Item1,
+                Surname = name[0].Item2,
+            };
+            Cars.Add(car);
+            return car;
+        }
+        private MechanicTA? GetUnocupiedMechanic(DateTime currentDate)
+        {
+            MechanicTA? mechanicTA;
+            do
+            {
+                var randomMechanic = Mechanics[_random.Next(Mechanics.Count)];
+                mechanicTA = MechanicTAs.FirstOrDefault(item =>
+                    item.Date == currentDate && item.Mechanic.Id == randomMechanic.Id
+                );
+                if (mechanicTA == null)
+                {
+                    mechanicTA = new MechanicTA()
+                    {
+                        Mechanic = randomMechanic,
+                        Date = currentDate,
+                    };
+                }
+            } while (mechanicTA == null || mechanicTA.HoursAmount >= 8);
+            MechanicTAs.Add(mechanicTA);
+            return mechanicTA;
+        }
         private void GenerateRecords()
         {
             var currentDay = StartDate;
@@ -95,21 +137,55 @@ namespace DW_Data_Generator.DataGenerators
             {
                 var repairsNumber = RepairsPerDay - RepairsPerDayOscilation + _random.Next(RepairsPerDayOscilation * 2 + 1);
                 //Individual Repairs inside
-                for(int i =0;i< repairsNumber; i++)
+                for (int i = 0; i < repairsNumber; i++)
                 {
+                    Part part = MiscGenerators.GeneratePart();
+                    part.Date_order = currentDay.AddDays(-7 + _random.Next(8));
+                    part.Date_in_stock = part.Date_order.Value.AddDays(_random.Next(8));
+                    if (part.Date_in_stock.Value > currentDay)
+                        part.Date_in_stock = currentDay;
+                    part.Date_used = currentDay;
 
-                }
-                if (currentDay == T1)
-                {
-
+                    Car car;
+                    if (_random.NextDouble() <= ChanceForNewClient)
+                    {
+                        //New Client
+                        car = GenerateSingleClient();
+                    }
+                    else
+                    {
+                        car = Cars[_random.Next(Cars.Count)];
+                    }
+                    var mechanicTA = GetUnocupiedMechanic(currentDay);
+                    Repair repair = new Repair()
+                    {
+                        Id = Repairs.Count,
+                        Repair_date_end = currentDay,
+                        Repair_date_start = currentDay.AddDays(-7 + _random.Next(8)),
+                        FK_registration = car.Registration,
+                        FK_id_mechanic = mechanicTA.Mechanic.Id,
+                        Pricing = part.Price.Value + part.LabourCost.Value,
+                        Used_car_transporter = _random.NextDouble() <= 0.05,
+                        Is_complaint = _random.NextDouble() <= 0.05
+                    };
+                    Repairs.Add(repair);
+                    Parts.Add(part);
+                    MechanicTAs[MechanicTAs.IndexOf(mechanicTA)].HoursAmount += part.LabourTime.Value;
                 }
                 if (currentDay == T2 || Repairs.Count >= LimitRecords)
                 {
                     //End of generating data
-
                     break;
                 }
                 currentDay = currentDay.AddDays(1);
+            }
+        }
+        private void SortAndIndexData()
+        {
+            Parts = Parts.OrderBy(item => item.Date_order).ToList();
+            for(int i =0;i < Parts.Count; i++)
+            {
+                Parts[i].Id = i;
             }
         }
         #endregion

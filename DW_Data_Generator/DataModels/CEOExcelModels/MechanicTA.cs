@@ -11,6 +11,6 @@ namespace DW_Data_Generator.CEOExcelModels
     {
         public Mechanic? Mechanic { get; set; }
         public DateTime Date { get; set; }
-        public double HoursAmount { get; set; }
+        public double HoursAmount { get; set; } = 0;
     }
 }

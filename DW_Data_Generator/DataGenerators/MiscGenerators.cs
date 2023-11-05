@@ -138,13 +138,16 @@ namespace DW_Data_Generator.DataGenerators
             listOfParts.ForEach(item =>
             {
                 var parts = item.Split(';');
+                double.Parse("1");
+                double.Parse("1,0");
+
                 _parts.Add(new Part()
                 {
                     Part_type = parts[0],
                     Producer = parts[1],
-                    Price = double.Parse(parts[2]),
-                    LabourCost = double.Parse(parts[3]),
-                    LabourTime = double.Parse(parts[4])
+                    Price = double.Parse(parts[2].Replace('.',',')),
+                    LabourCost = double.Parse(parts[3].Replace('.', ',')),
+                    LabourTime = double.Parse(parts[4].Replace('.', ','))
                 });
             });
         }
@@ -161,7 +164,8 @@ namespace DW_Data_Generator.DataGenerators
                 Part_type = part.Part_type,
                 Producer = part.Producer,
                 Price = part.Price,
-                LabourCost = part.LabourCost
+                LabourCost = part.LabourCost,
+                LabourTime = part.LabourTime
             };
         }
         #endregion
