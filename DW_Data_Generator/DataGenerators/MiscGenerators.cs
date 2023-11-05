@@ -143,7 +143,8 @@ namespace DW_Data_Generator.DataGenerators
                     Part_type = parts[0],
                     Producer = parts[1],
                     Price = double.Parse(parts[2]),
-                    LabourCost = double.Parse(parts[3])
+                    LabourCost = double.Parse(parts[3]),
+                    LabourTime = double.Parse(parts[4])
                 });
             });
         }
