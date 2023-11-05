@@ -1,0 +1,100 @@
+Toyota Camry
+Honda Civic
+Ford Mustang
+Chevrolet Silverado
+Volkswagen Jetta
+BMW 3 Series
+Nissan Altima
+Hyundai Sonata
+Subaru Outback
+Mercedes-Benz C-Class
+Audi A4
+Kia Sorento
+Jeep Wrangler
+Tesla Model 3
+Lexus RX
+GMC Sierra
+Cadillac Escalade
+Mazda CX-5
+Volvo XC90
+Chrysler 300
+Buick Encore
+Acura MDX
+Dodge Challenger
+Porsche 911
+Jaguar F-Type
+Land Rover Discovery
+Mini Cooper
+Fiat 500
+Hyundai Tucson
+Toyota Corolla
+Honda Accord
+Ford Explorer
+Chevrolet Tahoe
+Volkswagen Golf
+BMW 5 Series
+Nissan Rogue
+Subaru Forester
+Mercedes-Benz E-Class
+Audi Q5
+Kia Sportage
+Jeep Grand Cherokee
+Tesla Model Y
+Lexus ES
+GMC Yukon
+Cadillac XT5
+Mazda3
+Volvo XC60
+Chrysler Pacifica
+Buick Enclave
+Acura RDX
+Dodge Charger
+Porsche Cayenne
+Jaguar XE
+Land Rover Range Rover
+Mini Countryman
+Fiat 500X
+Hyundai Elantra
+Toyota RAV4
+Honda CR-V
+Ford F-150
+Chevrolet Equinox
+Volkswagen Passat
+BMW X3
+Nissan Murano
+Subaru Crosstrek
+Mercedes-Benz GLC
+Audi A6
+Kia Optima
+Jeep Cherokee
+Tesla Model X
+Lexus GX
+GMC Canyon
+Cadillac CT6
+Mazda MX-5
+Volvo S60
+Chrysler Voyager
+Buick Regal
+Acura ILX
+Dodge Durango
+Porsche Panamera
+Jaguar XF
+Land Rover Defender
+Mini Clubman
+Fiat 124 Spider
+Hyundai Kona
+Toyota 4Runner
+Honda Fit
+Ford Edge
+Chevrolet Colorado
+Volkswagen Tiguan
+BMW X5
+Nissan Pathfinder
+Subaru Impreza
+Mercedes-Benz S-Class
+Audi Q7
+Kia Telluride
+Jeep Renegade
+Tesla Model S
+Lexus LS
+GMC Acadia

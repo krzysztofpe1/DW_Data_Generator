@@ -1,0 +1,78 @@
+Spark plugs;NGK;25.00;250.00
+Air filter;Fram;50.00;100.00
+Oil change;Mobil 1;150.00;200.00
+Brake pads;Brembo;200.00;300.00
+Battery;AC Delco;350.00;150.00
+Serpentine belt;Gates;75.00;250.00
+Alternator;Bosch;300.00;400.00
+Radiator;Denso;350.00;450.00
+Fuel filter;Wix;50.00;150.00
+Thermostat;Stant;50.00;200.00
+Water pump;Airtex;200.00;350.00
+Tire rotation;-;100.00;75.00
+Wheel alignment;-;400.00;350.00
+Brake fluid flush;Castrol;100.00;250.00
+Transmission fluid change;Valvoline;200.00;300.00
+Oxygen sensor;Bosch;150.00;300.00
+Ignition coil;Delphi;100.00;200.00
+PCV valve;Standard Motor Products;25.00;100.00
+Mass airflow sensor;Spectra Premium;150.00;250.00
+EGR valve;ACDelco;75.00;200.00
+Camshaft position sensor;Dorman;100.00;150.00
+Crankshaft position sensor;Beck/Arnley;50.00;150.00
+Headlight bulb;Philips;25.00;50.00
+Brake rotor;Centric;100.00;250.00
+Control arm;Moog;150.00;300.00
+Suspension strut;Monroe;200.00;350.00
+Tie rod end;Mevotech;50.00;150.00
+Wheel hub assembly;Timken;200.00;250.00
+Catalytic converter;MagnaFlow;300.00;400.00
+Exhaust manifold;Dorman;100.00;200.00
+Power steering pump;Cardone;150.00;300.00
+Control arm bushing;Febi;50.00;100.00
+Fuel pump;Delphi;150.00;250.00
+Radiator fan assembly;TYC;100.00;200.00
+Wheel bearing;SKF;50.00;150.00
+Drive belt;Gates;25.00;100.00
+Fuel injector;Bosch;100.00;150.00
+Ignition control module;ACDelco;50.00;100.00
+Shock absorber;KYB;75.00;150.00
+CV joint;GSP;100.00;200.00
+Ball joint;Moog;50.00;100.00
+Transmission mount;Westar;25.00;150.00
+Clutch kit;Exedy;200.00;300.00
+Wheel cylinder;Raybestos;50.00;100.00
+Ignition switch;Standard Motor Products;25.00;150.00
+Muffler;Walker;100.00;200.00
+Transmission filter;Fram;50.00;100.00
+Axle shaft;A1 Cardone;100.00;200.00
+Transmission mount;Anchor;50.00;100.00
+Transmission control module;ACDelco;200.00;300.00
+Throttle body;Dorman;75.00;150.00
+MAP sensor;Standard Motor Products;50.00;100.00
+Power steering hose;Gates;100.00;200.00
+Control arm;Dorman;50.00;100.00
+Transmission speed sensor;ACDelco;25.00;150.00
+EGR valve;Standard Motor Products;50.00;100.00
+Transmission shift solenoid;Rostra;75.00;150.00
+Ignition coil;Bosch;50.00;100.00
+Fuel pressure regulator;Delphi;25.00;150.00
+Blower motor;TYC;75.00;200.00
+Engine mount;DEA;50.00;100.00
+Transmission pan gasket;Fel-Pro;25.00;100.00
+Brake caliper;Cardone;50.00;150.00
+Control arm bushing;Dorman;25.00;100.00
+Windshield wipers;Rain-X;50.00;50.00
+Headlight assembly;TYC;100.00;200.00
+Fuel tank;Spectra Premium;200.00;300.00
+Wheel lug nuts;Dorman;25.00;50.00
+Transmission shift cable;Pioneer Cables;50.00;100.00
+EGR valve gasket;Fel-Pro;25.00;50.00
+Exhaust hanger;Walker;25.00;50.00
+Engine oil cooler;Dorman;75.00;150.00
+Ignition switch;ACDelco;50.00;100.00
+Control arm;Moog;75.00;150.00
+Fuel tank filler neck;Dorman;50.00;100.00
+Brake master cylinder;Centric;100.00;200.00
+Transmission fluid cooler;Hayden;50.00;100.00
+Engine control module;A1 Cardone;200.00;300.00

@@ -1,4 +1,5 @@
-﻿using DW_Data_Generator.Utils;
+﻿using DW_Data_Generator.CarRepairMasterModels;
+using DW_Data_Generator.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,10 @@ namespace DW_Data_Generator.DataGenerator
         private static Random _random = new Random();
         private static List<string> _names = new List<string>();
         private static string _namesFilePath = "FullNames.txt";
+        private static List<string> _carInfos = new List<string>();
+        private static string _carInfosFilePath = "CarInfo.txt";
+        private static List<Part> _parts = new List<Part>();
+        private static string _partsFilePath = "Parts.txt";
         #region License Plate
         public static List<string> GenerateLicensePlates(int amount)
         {
@@ -42,7 +47,44 @@ namespace DW_Data_Generator.DataGenerator
             return "GD" + plate.ToString();
         }
         #endregion
-        #region Names
+        #region Car Info (Brand, Model)
+        private static void PopulateCarInfosList()
+        {
+            var file = File.ReadAllLines(_carInfosFilePath);
+            _carInfos = new List<string>(file);
+        }
+        public static List<(string, string)> GenerateCarInfos(int amount)
+        {
+            if (_carInfos.Count == 0)
+                PopulateCarInfosList();
+            if (_carInfos.Count == 0)
+                throw new DWException($"File: {_carInfosFilePath} doesn't exist. Can't generate names.");
+
+            if (amount > _carInfos.Count)
+                throw new DWException($"File: {_carInfosFilePath} has too few car infos to pick from.");
+
+            var midRes = new List<string>();
+            var count = _carInfos.Count;
+            string car = string.Empty;
+            for(int i = 0; i < amount; i++)
+            {
+                do
+                {
+                    var index = _random.Next(count);
+                    car = midRes[index];
+                }while(midRes.Contains(car));
+                midRes.Add(car);
+            }
+            var res = new List<(string, string)>();
+            midRes.ForEach(item =>
+            {
+                var parts = item.Split(';');
+                res.Add((parts[0], parts[1]));
+            });
+            return res;
+        }
+        #endregion
+        #region Names (Firstname, Surname)
         private static void PopulateNamesList()
         {
             var file = File.ReadAllLines(_namesFilePath);
@@ -54,9 +96,9 @@ namespace DW_Data_Generator.DataGenerator
         /// <param name="amount"></param>
         /// <returns>Tuple in which first List are First names and second List are Surnames</returns>
         /// <exception cref="DWException"></exception>
-        public static (List<string>, List<string>) GenerateFirstAndLastNames(int amount)
+        public static List<(string, string)> GenerateFirstAndLastNames(int amount)
         {
-            if(_names.Count == 0)
+            if (_names.Count == 0)
                 PopulateNamesList();
             if (_names.Count == 0)
                 throw new DWException($"File: {_namesFilePath} doesn't exist. Can't generate names.");
@@ -64,27 +106,55 @@ namespace DW_Data_Generator.DataGenerator
             if (amount > _names.Count)
                 throw new DWException($"File: {_namesFilePath} has too few names to pick from.");
 
-            var res = new List<string>();
+            var midRes = new List<string>();
             var count = _names.Count;
-            string name=string.Empty;
-            for (int i = 0;i < amount;i++)
+            string name = string.Empty;
+            for (int i = 0; i < amount; i++)
             {
                 do
                 {
                     var index = _random.Next(count);
                     name = _names[index];
-                } while (res.Contains(name));
-                res.Add(name);
+                } while (midRes.Contains(name));
+                midRes.Add(name);
             }
-            var firstnames = new List<string>();
-            var lastnames = new List<string>();
-            res.ForEach(item =>
+            var res = new List<(string, string)>();
+            midRes.ForEach(item =>
             {
                 var parts = item.Split(' ');
-                firstnames.Add(parts[0]);
-                lastnames.Add(parts[1]);
+                res.Add((parts[0], parts[1]));
             });
-            return (firstnames, lastnames);
+            return res;
+        }
+        #endregion
+        #region Parts
+        private static void PopulatePartsList()
+        {
+            _parts.Clear();
+            var file = File.ReadAllLines(_partsFilePath);
+            var listOfParts = new List<string>(file);
+            listOfParts.ForEach(item =>
+            {
+                var parts = item.Split(';');
+                _parts.Add(new Part()
+                {
+                    Part_type = parts[0],
+                    Producer = parts[1],
+                    Price = double.Parse(parts[2]),
+                    LabourCost = double.Parse(parts[3])
+                });
+            });
+        }
+        public static Part GeneratePart()
+        {
+            var  part = _parts[_random.Next(_parts.Count)];
+            return new Part()
+            {
+                Part_type = part.Part_type,
+                Producer = part.Producer,
+                Price = part.Price,
+                LabourCost = part.LabourCost
+            };
         }
         #endregion
     }

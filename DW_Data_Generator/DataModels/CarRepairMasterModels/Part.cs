@@ -12,6 +12,7 @@ namespace DW_Data_Generator.CarRepairMasterModels
         public string? Part_type { get; set; }
         public string? Producer { get; set; }
         public double? Price { get; set; }
+        public double? LabourCost { get; set; }
         public DateTime? Date_order { get; set; }
         public DateTime? Date_in_stock { get; set; }
         public DateTime? Date_used { get; set; }
