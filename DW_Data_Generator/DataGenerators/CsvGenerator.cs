@@ -28,10 +28,21 @@ namespace DW_Data_Generator.DataGenerators
 
             var mechanics = _dataGenerator.Mechanics;
             var mechanicTAs = _dataGenerator.MechanicTAs;
-            foreach(var mechanic in mechanics)
+            List<int> years = new();
+            mechanicTAs.ForEach(item =>
             {
-                var mechanicTA = mechanicTAs.Where(item=>item.Mechanic.Id == mechanic.Id).Cast<ModelInterface>().ToList();
-                SaveFile(mechanicTA, _excelDirectory + '\\' + mechanic.Name + mechanic.Surname+".csv");
+                var tempYear = item.Date.Year;
+                if (!years.Contains(tempYear))
+                    years.Add(tempYear);
+            });
+            foreach (var mechanic in mechanics)
+            {
+                years.ForEach(year =>
+                {
+                    CreateDirectory(_excelDirectory + "\\" + year);
+                    var mechanicTA = mechanicTAs.Where(item => item.Mechanic.Id == mechanic.Id).Cast<ModelInterface>().ToList();
+                    SaveFile(mechanicTA, _excelDirectory + '\\' + year + "\\" + mechanic.Name + mechanic.Surname + ".csv");
+                });
             }
         }
         #region directories
@@ -48,7 +59,7 @@ namespace DW_Data_Generator.DataGenerators
         #endregion
         private void SaveFile(List<ModelInterface> objects, string path)
         {
-            if(objects.Count == 0)
+            if (objects.Count == 0)
                 return;
             try
             {
