@@ -3,9 +3,6 @@ using DW_Data_Generator.CEOExcelModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DW_Data_Generator.DataGenerators
 {
