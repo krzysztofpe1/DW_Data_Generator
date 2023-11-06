@@ -49,6 +49,8 @@ namespace DW_Data_Generator.DataGenerators
         #region Public Methods
         public void GenerateData()
         {
+            if (LimitRecords == 0)
+                LimitRecords = int.MaxValue;
             GenerateMechanics();
             GenerateRegularClients();
             GenerateRecords();
@@ -139,6 +141,7 @@ namespace DW_Data_Generator.DataGenerators
                 //Individual Repairs inside
                 for (int i = 0; i < repairsNumber; i++)
                 {
+
                     Part part = MiscGenerators.GeneratePart();
                     part.Date_order = currentDay.AddDays(-7 + _random.Next(8));
                     part.Date_in_stock = part.Date_order.Value.AddDays(_random.Next(8));

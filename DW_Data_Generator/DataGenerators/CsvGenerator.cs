@@ -25,6 +25,14 @@ namespace DW_Data_Generator.DataGenerators
             SaveFile(_dataGenerator.Mechanics.Cast<ModelInterface>().ToList(), _systemDirectory + "\\Mechanics.csv");
             SaveFile(_dataGenerator.Parts.Cast<ModelInterface>().ToList(), _systemDirectory + "\\Parts.csv");
             SaveFile(_dataGenerator.Repairs.Cast<ModelInterface>().ToList(), _systemDirectory + "\\Repairs.csv");
+
+            var mechanics = _dataGenerator.Mechanics;
+            var mechanicTAs = _dataGenerator.MechanicTAs;
+            foreach(var mechanic in mechanics)
+            {
+                var mechanicTA = mechanicTAs.Where(item=>item.Mechanic.Id == mechanic.Id).Cast<ModelInterface>().ToList();
+                SaveFile(mechanicTA, _excelDirectory + '\\' + mechanic.Name + mechanic.Surname+".csv");
+            }
         }
         #region directories
         private void CreateDirectories()
@@ -40,6 +48,8 @@ namespace DW_Data_Generator.DataGenerators
         #endregion
         private void SaveFile(List<ModelInterface> objects, string path)
         {
+            if(objects.Count == 0)
+                return;
             try
             {
                 if (File.Exists(path))
@@ -48,6 +58,7 @@ namespace DW_Data_Generator.DataGenerators
                 }
                 using (StreamWriter sw = new StreamWriter(path))
                 {
+                    sw.WriteLine(objects[0].GenerateCsvHeader());
                     foreach (var obj in objects)
                     {
                         sw.WriteLine(obj.ToCsv());
