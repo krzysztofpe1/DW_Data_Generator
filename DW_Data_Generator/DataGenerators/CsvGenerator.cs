@@ -10,44 +10,70 @@ namespace DW_Data_Generator.DataGenerators
     public class CsvGenerator
     {
         private DataGenerator _dataGenerator;
-        private string _systemDirectory = "CarRepairMaster";
-        private string _excelDirectory = "CEOExcel";
+        private const string _systemDirectory = "CarRepairMaster";
+        private const string _excelDirectory = "CEOExcel";
         public CsvGenerator(DataGenerator dataGenerator)
         {
             _dataGenerator = dataGenerator;
         }
         public void ExportData()
         {
+            var t1 = _dataGenerator.T1;
             CreateDirectories();
-            SaveFile(_dataGenerator.Cars.Cast<ModelInterface>().ToList(), _systemDirectory + "\\Cars.csv");
-            SaveFile(_dataGenerator.Mechanics.Cast<ModelInterface>().ToList(), _systemDirectory + "\\Mechanics.csv");
-            SaveFile(_dataGenerator.Parts.Cast<ModelInterface>().ToList(), _systemDirectory + "\\Parts.csv");
-            SaveFile(_dataGenerator.Repairs.Cast<ModelInterface>().ToList(), _systemDirectory + "\\Repairs.csv");
+            SaveFile(_dataGenerator.Cars.Cast<ModelInterface>().ToList(), "T2\\" + _systemDirectory + "\\Cars.csv");
+            SaveFile(_dataGenerator.Mechanics.Cast<ModelInterface>().ToList(), "T2\\" + _systemDirectory + "\\Mechanics.csv");
+            SaveFile(_dataGenerator.Parts.Cast<ModelInterface>().ToList(), "T2\\" + _systemDirectory + "\\Parts.csv");
+            SaveFile(_dataGenerator.Repairs.Cast<ModelInterface>().ToList(), "T2\\" + _systemDirectory + "\\Repairs.csv");
+
+
+            SaveFile(_dataGenerator.Mechanics.Cast<ModelInterface>().ToList(), "T1\\" + _systemDirectory + "\\Mechanics.csv");
+
+            var repairs = _dataGenerator.Repairs.Where(item => item.Repair_date_start.Date <= t1.Date).ToList();
+            List<string> registrations = new();
+
+            var parts = _dataGenerator.Parts.Where(item => item.Date_order.Value.Date <= t1).ToList();
+            repairs.ForEach(item =>
+            {
+                registrations.Add(item.FK_registration);
+            });
+            SaveFile(repairs.Cast<ModelInterface>().ToList(), "T1\\" + _systemDirectory + "\\Repairs.csv");
+            var cars = _dataGenerator.Cars.Where(item => registrations.Contains(item.Registration));
+            SaveFile(cars.Cast<ModelInterface>().ToList(), "T1\\" + _systemDirectory + "\\Cars.csv");
+            SaveFile(parts.Cast<ModelInterface>().ToList(), "T1\\" + _systemDirectory + "\\Parts.csv");
 
             var mechanics = _dataGenerator.Mechanics;
             var mechanicTAs = _dataGenerator.MechanicTAs;
-            List<int> years = new();
+            List<int> yearsT2 = new();
             mechanicTAs.ForEach(item =>
             {
                 var tempYear = item.Date.Year;
-                if (!years.Contains(tempYear))
-                    years.Add(tempYear);
+                if (!yearsT2.Contains(tempYear))
+                    yearsT2.Add(tempYear);
             });
+            List<int> yearsT1 = yearsT2.Where(item => item <= t1.Year).ToList();
             foreach (var mechanic in mechanics)
             {
-                years.ForEach(year =>
+                yearsT1.ForEach(year =>
                 {
-                    CreateDirectory(_excelDirectory + "\\" + year);
+                    CreateDirectory("T1\\" + _excelDirectory + "\\" + year);
+                    var mechanicTA = mechanicTAs.Where(item => item.Mechanic.Id == mechanic.Id && item.Date <= t1).Cast<ModelInterface>().ToList();
+                    SaveFile(mechanicTA, "T1\\" + _excelDirectory + '\\' + year + "\\" + mechanic.Name + mechanic.Surname + ".csv");
+                });
+                yearsT2.ForEach(year =>
+                {
+                    CreateDirectory("T2\\" + _excelDirectory + "\\" + year);
                     var mechanicTA = mechanicTAs.Where(item => item.Mechanic.Id == mechanic.Id).Cast<ModelInterface>().ToList();
-                    SaveFile(mechanicTA, _excelDirectory + '\\' + year + "\\" + mechanic.Name + mechanic.Surname + ".csv");
+                    SaveFile(mechanicTA, "T2\\" + _excelDirectory + '\\' + year + "\\" + mechanic.Name + mechanic.Surname + ".csv");
                 });
             }
         }
         #region directories
         private void CreateDirectories()
         {
-            CreateDirectory(_systemDirectory);
-            CreateDirectory(_excelDirectory);
+            CreateDirectory("T1\\" + _systemDirectory);
+            CreateDirectory("T2\\" + _systemDirectory);
+            CreateDirectory("T1\\"+ _excelDirectory);
+            CreateDirectory("T2\\"+ _excelDirectory);
         }
         private void CreateDirectory(string path)
         {

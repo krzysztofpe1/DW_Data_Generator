@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows;
 
 namespace DW_Data_Generator.DataGenerators
 {
@@ -98,6 +99,7 @@ namespace DW_Data_Generator.DataGenerators
         /// <exception cref="DWException"></exception>
         public static List<(string, string)> GenerateFirstAndLastNames(int amount)
         {
+            MessageBox.Show(amount.ToString());
             if (_names.Count == 0)
                 PopulateNamesList();
             if (_names.Count == 0)

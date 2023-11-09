@@ -171,8 +171,10 @@ namespace DW_Data_Generator.DataGenerators
                     Repairs.Add(repair);
                     Parts.Add(part);
                     MechanicTAs[MechanicTAs.IndexOf(mechanicTA)].HoursAmount += part.LabourTime.Value;
+                    if (Repairs.Count >= LimitRecords)
+                        break;
                 }
-                if (currentDay == T2 || Repairs.Count >= LimitRecords)
+                if (currentDay == T2)
                 {
                     //End of generating data
                     break;
