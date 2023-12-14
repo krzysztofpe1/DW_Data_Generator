@@ -2,6 +2,7 @@
 using DW_Data_Generator.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -13,7 +14,8 @@ namespace DW_Data_Generator.DataGenerators
         #region Private vars
         private static Random _random = new Random();
         private static List<string> _names = new List<string>();
-        private static string _namesFilePath = "FullNames.txt";
+        private static string _firstNamesPath = "Firstnames.txt";
+        private static string _lastnamesPath = "Lastnames.txt";
         private static List<string> _carInfos = new List<string>();
         private static string _carInfosFilePath = "CarInfo.txt";
         private static List<Part> _parts = new List<Part>();
@@ -88,8 +90,17 @@ namespace DW_Data_Generator.DataGenerators
         #region Names (Firstname, Surname)
         private static void PopulateNamesList()
         {
-            var file = File.ReadAllLines(_namesFilePath);
-            _names = new List<string>(file);
+            var file = File.ReadAllLines(_firstNamesPath);
+            var firstNames = new List<string>(file);
+            file = File.ReadAllLines(_lastnamesPath);
+            var lastNames = new List<string>(file);
+            foreach(var firstname in firstNames)
+            {
+                foreach(var lastname in lastNames)
+                {
+                    _names.Add(firstname+" "+lastname);
+                }
+            }
         }
         /// <summary>
         /// 
@@ -102,10 +113,10 @@ namespace DW_Data_Generator.DataGenerators
             if (_names.Count == 0)
                 PopulateNamesList();
             if (_names.Count == 0)
-                throw new DWException($"File: {_namesFilePath} doesn't exist. Can't generate names.");
+                throw new DWException($"Files containing names don't exist. Can't generate names.");
 
             if (amount > _names.Count)
-                throw new DWException($"File: {_namesFilePath} has too few names to pick from.");
+                throw new DWException($"Files containing names have too few names to pick from.");
 
             var midRes = new List<string>();
             var count = _names.Count;
@@ -122,6 +133,7 @@ namespace DW_Data_Generator.DataGenerators
             var res = new List<(string, string)>();
             midRes.ForEach(item =>
             {
+                _names.Remove(item);
                 var parts = item.Split(' ');
                 res.Add((parts[0], parts[1]));
             });
