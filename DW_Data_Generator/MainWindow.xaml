@@ -37,10 +37,10 @@
         <TextBlock HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="116" TextAlignment="Right" Grid.Row="8"><Run Language="pl-pl" Text="Estimated records:"/></TextBlock>
 
         <!--Fields on second Column-->
-        <DatePicker x:Name="start_date" Text="30.10.2023" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126" Height="24"/>
+        <DatePicker x:Name="start_date" Text="01.01.2023" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126" Height="24"/>
         <TextBox x:Name="repairs_per_day" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="5" VerticalAlignment="Center" Width="126" Grid.Column="1" Grid.Row="1" PreviewTextInput="NumericTextBoxControl" PreviewKeyDown="UpdateEstimatedCounts"/>
-        <DatePicker x:Name="t1" Grid.Column="1" Text="30.10.2023" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126" Height="24" Grid.Row="2"/>
-        <DatePicker x:Name="t2" Grid.Column="1" Text="11.11.2023" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126" Height="24" Grid.Row="3"/>
+        <DatePicker x:Name="t1" Grid.Column="1" Text="01.08.2023" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126" Height="24" Grid.Row="2"/>
+        <DatePicker x:Name="t2" Grid.Column="1" Text="01.12.2023" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126" Height="24" Grid.Row="3"/>
         <TextBox x:Name="limit_records" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="126" Grid.Column="1" Grid.Row="4" PreviewTextInput="NumericTextBoxControl"/>
         <TextBox x:Name="mechanics_count" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="8" VerticalAlignment="Center" Width="126" Grid.Column="1" Grid.Row="5" PreviewTextInput="NumericTextBoxControl"/>
         <TextBox x:Name="regular_clients" HorizontalAlignment="Center" Height="19" TextWrapping="Wrap" Text="100" VerticalAlignment="Center" Width="126" Grid.Column="1" Grid.Row="6" PreviewTextInput="NumericTextBoxControl"/>

@@ -48,13 +48,13 @@ namespace DW_Data_Generator.DataGenerators
             return "GD" + plate.ToString();
         }
         #endregion
-        #region Car Info (Brand, Model)
+        #region Car Info (Brand, Model, Type, Year_of_production)
         private static void PopulateCarInfosList()
         {
             var file = File.ReadAllLines(_carInfosFilePath);
             _carInfos = new List<string>(file);
         }
-        public static List<(string, string)> GenerateCarInfos(int amount)
+        public static List<(string, string, string, int)> GenerateCarInfos(int amount)
         {
             if (_carInfos.Count == 0)
                 PopulateCarInfosList();
@@ -76,11 +76,11 @@ namespace DW_Data_Generator.DataGenerators
                 }while(midRes.Contains(car));
                 midRes.Add(car);
             }
-            var res = new List<(string, string)>();
+            var res = new List<(string, string,string, int)>();
             midRes.ForEach(item =>
             {
                 var parts = item.Split(';');
-                res.Add((parts[0], parts[1]));
+                res.Add((parts[0], parts[1], parts[2], _random.Next(1990,DateTime.Now.Year)));
             });
             return res;
         }
@@ -99,7 +99,6 @@ namespace DW_Data_Generator.DataGenerators
         /// <exception cref="DWException"></exception>
         public static List<(string, string)> GenerateFirstAndLastNames(int amount)
         {
-            MessageBox.Show(amount.ToString());
             if (_names.Count == 0)
                 PopulateNamesList();
             if (_names.Count == 0)

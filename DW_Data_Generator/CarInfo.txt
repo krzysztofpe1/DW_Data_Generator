@@ -1,100 +1,100 @@
-Toyota Camry
-Honda Civic
-Ford Mustang
-Chevrolet Silverado
-Volkswagen Jetta
-BMW 3 Series
-Nissan Altima
-Hyundai Sonata
-Subaru Outback
-Mercedes-Benz C-Class
-Audi A4
-Kia Sorento
-Jeep Wrangler
-Tesla Model 3
-Lexus RX
-GMC Sierra
-Cadillac Escalade
-Mazda CX-5
-Volvo XC90
-Chrysler 300
-Buick Encore
-Acura MDX
-Dodge Challenger
-Porsche 911
-Jaguar F-Type
-Land Rover Discovery
-Mini Cooper
-Fiat 500
-Hyundai Tucson
-Toyota Corolla
-Honda Accord
-Ford Explorer
-Chevrolet Tahoe
-Volkswagen Golf
-BMW 5 Series
-Nissan Rogue
-Subaru Forester
-Mercedes-Benz E-Class
-Audi Q5
-Kia Sportage
-Jeep Grand Cherokee
-Tesla Model Y
-Lexus ES
-GMC Yukon
-Cadillac XT5
-Mazda3
-Volvo XC60
-Chrysler Pacifica
-Buick Enclave
-Acura RDX
-Dodge Charger
-Porsche Cayenne
-Jaguar XE
-Land Rover Range Rover
-Mini Countryman
-Fiat 500X
-Hyundai Elantra
-Toyota RAV4
-Honda CR-V
-Ford F-150
-Chevrolet Equinox
-Volkswagen Passat
-BMW X3
-Nissan Murano
-Subaru Crosstrek
-Mercedes-Benz GLC
-Audi A6
-Kia Optima
-Jeep Cherokee
-Tesla Model X
-Lexus GX
-GMC Canyon
-Cadillac CT6
-Mazda MX-5
-Volvo S60
-Chrysler Voyager
-Buick Regal
-Acura ILX
-Dodge Durango
-Porsche Panamera
-Jaguar XF
-Land Rover Defender
-Mini Clubman
-Fiat 124 Spider
-Hyundai Kona
-Toyota 4Runner
-Honda Fit
-Ford Edge
-Chevrolet Colorado
-Volkswagen Tiguan
-BMW X5
-Nissan Pathfinder
-Subaru Impreza
-Mercedes-Benz S-Class
-Audi Q7
-Kia Telluride
-Jeep Renegade
-Tesla Model S
-Lexus LS
-GMC Acadia
+Toyota;Camry;Osobowy
+Honda;Civic;Osobowy
+Ford;Mustang;Osobowy
+Chevrolet;Silverado;Ciężarowy
+Volkswagen;Jetta;Osobowy
+BMW;3 Series;Osobowy
+Nissan;Altima;Osobowy
+Hyundai;Sonata;Osobowy
+Subaru;Outback;Osobowy
+Mercedes-Benz;C-Class;Osobowy
+Audi;A4;Osobowy
+Kia;Sorento;Osobowy
+Jeep;Wrangler;Osobowy
+Tesla;Model 3;Osobowy
+Lexus;RX;Osobowy
+GMC;Sierra;Ciężarowy
+Cadillac;Escalade;Osobowy
+Mazda;CX-5;Osobowy
+Volvo;XC90;Osobowy
+Chrysler;300;Osobowy
+Buick;Encore;Osobowy
+Acura;MDX;Osobowy
+Dodge;Challenger;Osobowy
+Porsche;911;Osobowy
+Jaguar;F-Type;Osobowy
+Land Rover;Discovery;Osobowy
+Mini;Cooper;Osobowy
+Fiat;500;Osobowy
+Hyundai;Tucson;Osobowy
+Toyota;Corolla;Osobowy
+Honda;Accord;Osobowy
+Ford;Explorer;Osobowy
+Chevrolet;Tahoe;Osobowy
+Volkswagen;Golf;Osobowy
+BMW;5 Series;Osobowy
+Nissan;Rogue;Osobowy
+Subaru;Forester;Osobowy
+Mercedes-Benz;E-Class;Osobowy
+Audi;Q5;Osobowy
+Kia;Sportage;Osobowy
+Jeep;Grand Cherokee;Osobowy
+Tesla;Model Y;Osobowy
+Lexus;ES;Osobowy
+GMC;Yukon;Osobowy
+Cadillac;XT5;Osobowy
+Mazda;3;Osobowy
+Volvo;XC60;Osobowy
+Chrysler;Pacifica;Osobowy
+Buick;Enclave;Osobowy
+Acura;RDX;Osobowy
+Dodge;Charger;Osobowy
+Porsche;Cayenne;Osobowy
+Jaguar;XE;Osobowy
+Land Rover;Range Rover;Osobowy
+Mini;Countryman;Osobowy
+Fiat;500X;Osobowy
+Hyundai;Elantra;Osobowy
+Toyota;RAV4;Osobowy
+Honda;CR-V;Osobowy
+Ford;F-150;Ciężarowy
+Chevrolet;Equinox;Osobowy
+Volkswagen;Passat;Osobowy
+BMW;X3;Osobowy
+Nissan;Murano;Osobowy
+Subaru;Crosstrek;Osobowy
+Mercedes-Benz;GLC;Osobowy
+Audi;A6;Osobowy
+Kia;Optima;Osobowy
+Jeep;Cherokee;Osobowy
+Tesla;Model X;Osobowy
+Lexus;GX;Osobowy
+GMC;Canyon;Ciężarowy
+Cadillac;CT6;Osobowy
+Mazda;MX-5;Osobowy
+Volvo;S60;Osobowy
+Chrysler;Voyager;Osobowy
+Buick;Regal;Osobowy
+Acura;ILX;Osobowy
+Dodge;Durango;Osobowy
+Porsche;Panamera;Osobowy
+Jaguar;XF;Osobowy
+Land Rover;Defender;Osobowy
+Mini;Clubman;Osobowy
+Fiat;124 Spider;Osobowy
+Hyundai;Kona;Osobowy
+Toyota;4Runner;Osobowy
+Honda;Fit;Osobowy
+Ford;Edge;Osobowy
+Chevrolet;Colorado;Ciężarowy
+Volkswagen;Tiguan;Osobowy
+BMW;X5;Osobowy
+Nissan;Pathfinder;Osobowy
+Subaru;Impreza;Osobowy
+Mercedes-Benz;S-Class;Osobowy
+Audi;Q7;Osobowy
+Kia;Telluride;Osobowy
+Jeep;Renegade;Osobowy
+Tesla;Model S;Osobowy
+Lexus;LS;Osobowy
+GMC;Acadia;Osobowy

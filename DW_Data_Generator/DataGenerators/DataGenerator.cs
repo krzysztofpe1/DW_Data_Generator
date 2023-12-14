@@ -82,8 +82,12 @@ namespace DW_Data_Generator.DataGenerators
                     Registration = registrations[i],
                     Brand = carInfos[i].Item1,
                     Model = carInfos[i].Item2,
+                    Type = carInfos[i].Item3,
+                    YearOfProduction = carInfos[i].Item4,
                     Name = names[i].Item1,
                     Surname = names[i].Item2,
+                    IntroductionDate = StartDate
+
                 });
             }
         }
@@ -101,6 +105,8 @@ namespace DW_Data_Generator.DataGenerators
                 Registration = registration[0],
                 Brand = carInfo[0].Item1,
                 Model = carInfo[0].Item2,
+                Type = carInfo[0].Item3,
+                YearOfProduction = carInfo[0].Item4,
                 Name = name[0].Item1,
                 Surname = name[0].Item2,
             };
@@ -151,6 +157,7 @@ namespace DW_Data_Generator.DataGenerators
                     {
                         //New Client
                         car = GenerateSingleClient();
+                        car.IntroductionDate = currentDay;
                     }
                     else
                     {
