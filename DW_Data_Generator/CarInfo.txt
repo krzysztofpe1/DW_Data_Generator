@@ -1,7 +1,7 @@
 Toyota;Camry;Osobowy
 Honda;Civic;Osobowy
 Ford;Mustang;Osobowy
-Chevrolet;Silverado;Ciężarowy
+Chevrolet;Silverado;Ciezarowy
 Volkswagen;Jetta;Osobowy
 BMW;3 Series;Osobowy
 Nissan;Altima;Osobowy
@@ -13,7 +13,7 @@ Kia;Sorento;Osobowy
 Jeep;Wrangler;Osobowy
 Tesla;Model 3;Osobowy
 Lexus;RX;Osobowy
-GMC;Sierra;Ciężarowy
+GMC;Sierra;Ciezarowy
 Cadillac;Escalade;Osobowy
 Mazda;CX-5;Osobowy
 Volvo;XC90;Osobowy
@@ -57,7 +57,7 @@ Fiat;500X;Osobowy
 Hyundai;Elantra;Osobowy
 Toyota;RAV4;Osobowy
 Honda;CR-V;Osobowy
-Ford;F-150;Ciężarowy
+Ford;F-150;Ciezarowy
 Chevrolet;Equinox;Osobowy
 Volkswagen;Passat;Osobowy
 BMW;X3;Osobowy
@@ -69,7 +69,7 @@ Kia;Optima;Osobowy
 Jeep;Cherokee;Osobowy
 Tesla;Model X;Osobowy
 Lexus;GX;Osobowy
-GMC;Canyon;Ciężarowy
+GMC;Canyon;Ciezarowy
 Cadillac;CT6;Osobowy
 Mazda;MX-5;Osobowy
 Volvo;S60;Osobowy
@@ -86,7 +86,7 @@ Hyundai;Kona;Osobowy
 Toyota;4Runner;Osobowy
 Honda;Fit;Osobowy
 Ford;Edge;Osobowy
-Chevrolet;Colorado;Ciężarowy
+Chevrolet;Colorado;Ciezarowy
 Volkswagen;Tiguan;Osobowy
 BMW;X5;Osobowy
 Nissan;Pathfinder;Osobowy
