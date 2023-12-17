@@ -24,16 +24,13 @@ namespace DW_Data_Generator.CarRepairMasterModels
                 "part_type",
                 "producer",
                 "price",
-                "date_order",
-                "date_in_stock",
-                "date_used",
                 "FK_id_repair");
             return sb.ToString();
         }
         public string ToCsv()
         {
             var sb = new StringBuilder();
-            sb.AppendJoin(';', Id.ToString(), Part_type, Producer, Price, Date_order.ToString(), Date_in_stock.ToString(), Date_used.ToString(), FK_id_repair.ToString());
+            sb.AppendJoin(';', Id.ToString(), Part_type, Producer, Price, FK_id_repair.ToString());
             return sb.ToString();
         }
     }

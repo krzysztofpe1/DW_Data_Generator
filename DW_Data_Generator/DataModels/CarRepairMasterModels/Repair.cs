@@ -13,6 +13,7 @@ namespace DW_Data_Generator.CarRepairMasterModels
         public double Pricing { get; set; }
         public bool Used_car_transporter { get; set; }
         public bool Is_complaint { get; set; }
+        public int RepairNo { get; set; }
 
         public string GenerateCsvHeader()
         {
@@ -25,7 +26,8 @@ namespace DW_Data_Generator.CarRepairMasterModels
                 "FK_id_mechanic",
                 "pricing",
                 "used_car_transporter",
-                "is_complaint");
+                "is_complaint",
+                "repair_no");
             return sb.ToString();
         }
 
@@ -34,13 +36,14 @@ namespace DW_Data_Generator.CarRepairMasterModels
             var sb = new StringBuilder();
             sb.AppendJoin(';',
                 Id.ToString(),
-                Repair_date_start.ToString(),
-                Repair_date_end.ToString(),
+                Repair_date_start.ToString("dd-MM-yyyy"),
+                Repair_date_end.ToString("dd-MM-yyyy"),
                 FK_registration,
                 FK_id_mechanic,
                 Pricing,
                 Used_car_transporter.ToString(),
-                Is_complaint.ToString());
+                Is_complaint.ToString(),
+                RepairNo.ToString());
             return sb.ToString();
         }
     }

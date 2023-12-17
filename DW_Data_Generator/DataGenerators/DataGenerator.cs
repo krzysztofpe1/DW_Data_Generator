@@ -1,5 +1,6 @@
 ﻿using DW_Data_Generator.CarRepairMasterModels;
 using DW_Data_Generator.CEOExcelModels;
+using DW_Data_Generator.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,11 +28,8 @@ namespace DW_Data_Generator.DataGenerators
         public List<MechanicTA> MechanicTAs { get; private set; }
         #endregion
         #region Private vars
-        private List<Car> _carsList = new List<Car>();
-        private List<Mechanic> _mechanicList = new List<Mechanic>();
-        private List<Part> _partsList = new List<Part>();
-        private List<Repair> _repairsList = new List<Repair>();
         private Random _random = new Random();
+        private int _repair_no = 1;
         #endregion
         #region Ctor
         public DataGenerator()
@@ -113,7 +111,7 @@ namespace DW_Data_Generator.DataGenerators
             Cars.Add(car);
             return car;
         }
-        private MechanicTA? GetUnocupiedMechanic(DateTime currentDate)
+        private MechanicTA GetUnocupiedMechanic(DateTime currentDate)
         {
             MechanicTA? mechanicTA;
             do
@@ -144,14 +142,57 @@ namespace DW_Data_Generator.DataGenerators
                 //Individual Repairs inside
                 for (int i = 0; i < repairsNumber; i++)
                 {
+                    if (_random.NextDouble() <= 0.05 && Repairs.Count > 20)
+                    {
+                        //Complaint
+                        Repair originalRepair;
+                        do
+                        {
+                            originalRepair = Repairs[Repairs.Count - _random.Next(repairsNumber, 20)];
+                        } while (originalRepair.Is_complaint == true);
+                        var complaintRepair = new Repair()
+                        {
+                            Id = Repairs.Count,
+                            Repair_date_end = currentDay,
+                            Repair_date_start = currentDay.AddDays(-3 + _random.Next(4)),
+                            FK_registration = originalRepair.FK_registration,
+                            //maybe will need to change for the cost of repair
+                            Pricing = 0,
+                            Used_car_transporter = _random.NextDouble() <= 0.05,
+                            Is_complaint = true,
+                            RepairNo = originalRepair.RepairNo
+                        };
+                        var partsFromOriginalRepair = Parts.Where(item => item.FK_id_repair == originalRepair.Id).ToList();
+                        var partsForComplaintRepair = partsFromOriginalRepair.PickRandom(_random.Next(partsFromOriginalRepair.Count));
+                        for(int j=0;j< partsForComplaintRepair.Count; j++)
+                        {
+                            partsForComplaintRepair[j].FK_id_repair = complaintRepair.Id;
+                            partsForComplaintRepair[j].Date_used = currentDay;
+                            partsForComplaintRepair[j].Date_order = currentDay.AddDays(-3+_random.Next(4));
+                            partsForComplaintRepair[j].Date_in_stock = partsForComplaintRepair[j].Date_order.Value.AddDays(_random.Next(4));
+                            if (partsForComplaintRepair[j].Date_in_stock > currentDay)
+                                partsForComplaintRepair[j].Date_in_stock = currentDay;
+                        }
+                        Parts.AddRange(partsForComplaintRepair);
+                        var mechTA = GetUnocupiedMechanic(currentDay);
+                        MechanicTAs[MechanicTAs.IndexOf(mechTA)].HoursAmount += partsForComplaintRepair.Sum(item => item.LabourTime.Value);
+                        complaintRepair.FK_id_mechanic = mechTA.Mechanic.Id;
+                        Repairs.Add(complaintRepair);
+                        
 
-                    Part part = MiscGenerators.GeneratePart();
-                    part.Date_order = currentDay.AddDays(-7 + _random.Next(8));
-                    part.Date_in_stock = part.Date_order.Value.AddDays(_random.Next(8));
-                    if (part.Date_in_stock.Value > currentDay)
-                        part.Date_in_stock = currentDay;
-                    part.Date_used = currentDay;
-
+                        continue;
+                    }
+                    var listOfPartsInRepair = new List<Part>();
+                    for (int j = 0; j < _random.Next(4); j++)
+                    {
+                        Part part = MiscGenerators.GeneratePart();
+                        part.Date_order = currentDay.AddDays(-7 + _random.Next(8));
+                        part.Date_in_stock = part.Date_order.Value.AddDays(_random.Next(8));
+                        if (part.Date_in_stock.Value > currentDay)
+                            part.Date_in_stock = currentDay;
+                        part.Date_used = currentDay;
+                        listOfPartsInRepair.Add(part);
+                    }
                     Car car;
                     if (_random.NextDouble() <= ChanceForNewClient)
                     {
@@ -171,13 +212,18 @@ namespace DW_Data_Generator.DataGenerators
                         Repair_date_start = currentDay.AddDays(-7 + _random.Next(8)),
                         FK_registration = car.Registration,
                         FK_id_mechanic = mechanicTA.Mechanic.Id,
-                        Pricing = part.Price.Value + part.LabourCost.Value,
+                        Pricing = listOfPartsInRepair.Sum(item => item.LabourCost.Value),
                         Used_car_transporter = _random.NextDouble() <= 0.05,
-                        Is_complaint = _random.NextDouble() <= 0.05
+                        Is_complaint = false,
+                        RepairNo = _repair_no++
                     };
                     Repairs.Add(repair);
-                    Parts.Add(part);
-                    MechanicTAs[MechanicTAs.IndexOf(mechanicTA)].HoursAmount += part.LabourTime.Value;
+                    for (int j = 0; j < listOfPartsInRepair.Count; j++)
+                    {
+                        listOfPartsInRepair[j].FK_id_repair = repair.Id;
+                    }
+                    Parts.AddRange(listOfPartsInRepair);
+                    MechanicTAs[MechanicTAs.IndexOf(mechanicTA)].HoursAmount += listOfPartsInRepair.Sum(item => item.LabourTime.Value);
                     if (Repairs.Count >= LimitRecords)
                         break;
                 }
@@ -192,11 +238,35 @@ namespace DW_Data_Generator.DataGenerators
         private void SortAndIndexData()
         {
             Parts = Parts.OrderBy(item => item.Date_order).ToList();
-            for(int i =0;i < Parts.Count; i++)
+            for (int i = 0; i < Parts.Count; i++)
             {
                 Parts[i].Id = i;
             }
         }
         #endregion
+        
+    }
+    public static class ListHelper
+    {
+        private static Random _random = new Random();
+        public static List<T> PickRandom<T>(this List<T> list, int number)
+        {
+            if (list == null)
+                return new List<T>();
+            if (number == 0)
+                return new List<T>();
+            if (list.Count < number)
+                throw new DWException("Tried to pick more items than there are in list");
+            var res = new List<T>();
+            var temp = new List<T>();
+            temp.AddRange(list);
+            do
+            {
+                var item = temp[_random.Next(temp.Count)];
+                res.Add(item);
+                temp.Remove(item);
+            } while (res.Count < number);
+            return res;
+        }
     }
 }
