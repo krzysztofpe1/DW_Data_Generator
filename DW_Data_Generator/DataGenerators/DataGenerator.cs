@@ -178,8 +178,6 @@ namespace DW_Data_Generator.DataGenerators
                         MechanicTAs[MechanicTAs.IndexOf(mechTA)].HoursAmount += partsForComplaintRepair.Sum(item => item.LabourTime.Value);
                         complaintRepair.FK_id_mechanic = mechTA.Mechanic.Id;
                         Repairs.Add(complaintRepair);
-                        
-
                         continue;
                     }
                     var listOfPartsInRepair = new List<Part>();

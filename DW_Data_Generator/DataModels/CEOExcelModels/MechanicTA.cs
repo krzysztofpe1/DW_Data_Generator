@@ -13,14 +13,19 @@ namespace DW_Data_Generator.CEOExcelModels
         public string GenerateCsvHeader()
         {
             var sb = new StringBuilder();
-            sb.AppendJoin(';', Mechanic.Id.ToString(), Mechanic.Name, Mechanic.Surname);
+            sb.AppendJoin(';',
+                "name",
+                "surname",
+                "date",
+                "hours_amount"
+                );
             return sb.ToString();
         }
 
         public string ToCsv()
         {
             var sb = new StringBuilder();
-            sb.AppendJoin(';', Date.ToString(), HoursAmount.ToString());
+            sb.AppendJoin(';', Mechanic.Name, Mechanic.Surname, Date.ToString("dd-MM-yyyy"), HoursAmount.ToString());
             return sb.ToString();
         }
     }

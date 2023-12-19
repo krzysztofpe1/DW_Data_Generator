@@ -51,29 +51,29 @@ namespace DW_Data_Generator.DataGenerators
                     yearsT2.Add(tempYear);
             });
             List<int> yearsT1 = yearsT2.Where(item => item <= t1.Year).ToList();
-            foreach (var mechanic in mechanics)
+
+
+            yearsT1.ForEach(year =>
             {
-                yearsT1.ForEach(year =>
-                {
-                    CreateDirectory("T1\\" + _excelDirectory + "\\" + year);
-                    var mechanicTA = mechanicTAs.Where(item => item.Mechanic.Id == mechanic.Id && item.Date <= t1).Cast<ModelInterface>().ToList();
-                    SaveFile(mechanicTA, "T1\\" + _excelDirectory + '\\' + year + "\\" + mechanic.Name + mechanic.Surname + ".csv");
-                });
-                yearsT2.ForEach(year =>
-                {
-                    CreateDirectory("T2\\" + _excelDirectory + "\\" + year);
-                    var mechanicTA = mechanicTAs.Where(item => item.Mechanic.Id == mechanic.Id).Cast<ModelInterface>().ToList();
-                    SaveFile(mechanicTA, "T2\\" + _excelDirectory + '\\' + year + "\\" + mechanic.Name + mechanic.Surname + ".csv");
-                });
-            }
+                CreateDirectory("T1\\" + _excelDirectory);
+                var temp = mechanicTAs.Where(item => item.Date <= t1 && item.Date.Year == year).Cast<ModelInterface>().ToList();
+                SaveFile(temp, "T1\\" + _excelDirectory + '\\' + year + ".csv");
+            });
+            yearsT2.ForEach(year =>
+            {
+                CreateDirectory("T2\\" + _excelDirectory);
+                var temp = mechanicTAs.Where(item => item.Date.Year == year).Cast<ModelInterface>().ToList();
+                SaveFile(mechanicTAs.Cast<ModelInterface>().ToList(), "T2\\" + _excelDirectory + '\\' + year + ".csv");
+            });
+
         }
         #region directories
         private void CreateDirectories()
         {
             CreateDirectory("T1\\" + _systemDirectory);
             CreateDirectory("T2\\" + _systemDirectory);
-            CreateDirectory("T1\\"+ _excelDirectory);
-            CreateDirectory("T2\\"+ _excelDirectory);
+            CreateDirectory("T1\\" + _excelDirectory);
+            CreateDirectory("T2\\" + _excelDirectory);
         }
         private void CreateDirectory(string path)
         {
